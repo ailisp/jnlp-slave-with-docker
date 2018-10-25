@@ -1,7 +1,6 @@
 FROM jenkinsci/jnlp-slave:3.16-1
 
-ARG DOCKER_VERSION=17.06.2~ce-0~debian
-ARG DC_VERSION=1.18.0
+ARG DOCKER_VERSION=18.06.1~ce-0~debian
 
 USER root
 
@@ -18,6 +17,4 @@ RUN apt-get update && \
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable" && \
     apt-get update && \
     apt-get install -qq -y --no-install-recommends docker-ce=${DOCKER_VERSION} && \
-    curl -L https://github.com/docker/compose/releases/download/${DC_VERSION}/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose && \
-    chmod +x /usr/local/bin/docker-compose && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
